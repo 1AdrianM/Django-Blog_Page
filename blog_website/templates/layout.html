@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>
+        {% block title %}
+        Blog page
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <nav class='nav--bar'>
+        <ul class='menu'>
+<li><a href="/">Inicio</a></li>
+<li><a href="/post">Post</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="{% url 'users:register'%}">Sign Up</a></li>
+<li><a href="{% url 'users:login'%}">Sign in</a></li>
+<form method='post' action="{% url 'users:logout' %}" >
+    {% csrf_token %}
+    <button >
+        Logout
+    </button>
+</form>
+        </ul>
+    </nav>
+    <main>
+       {% block content %}
+    {% endblock%}
+    </main>
+</body>
+</html>
